@@ -1,0 +1,21 @@
+module App{
+
+  interface BankTransaction {
+    boolean askConfirm(in long idAccountA, in long idAccountB,in long idBankA,in long money);
+    long getId();
+  };
+
+  interface BankCustomer {
+    long createAccount(in string accountname,in long money);
+    void destroy(in long idAccount);
+    boolean depositAccount(in long idAccountA, in long idAccountB, in long idBank,in long money);
+    void withDrawAccount(in long idAccountA, in long money);
+    long  getMoney(in long idAccountA);
+  };
+  
+  interface Interbank {
+    boolean  askTransfert(in long idAccountA, in long idAccountB,in long idBankA,in long idBankB,in long money);
+    long getNewId();
+    void addNewBank(in BankTransaction bankTransaction);
+  };
+};
