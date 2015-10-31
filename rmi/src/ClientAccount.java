@@ -41,21 +41,22 @@ public class ClientAccount {
 			System.out.println("Select an option");
 			System.out.println("1  : authentificate");
 			System.out.println("2  : create Account");
+			System.out.print("Your Option: ");
 			choix = Integer.parseInt(bufferRead.readLine());
 			if (choix !=1 && choix !=2){
-		       	    System.out.println("unknown choice");
+		       	    System.out.println("Unknown Choice");
 			}else
 			    error = false;
 	    }
 	
 	    switch(choix){
 		    case 1:
-				System.out.println("Tape the id Account");
+				System.out.print("Tape the id Account: ");
 				int idAccountSelected = Integer.parseInt(bufferRead.readLine());
 				idAccount = idAccountSelected;
 			break;
 		    case 2 :
-				System.out.println("Tape the name of the Account");
+				System.out.print("Tape the name of the Account: ");
 			        String nameAccount = bufferRead.readLine();
 				idAccount = bankCustomer.createAccount(nameAccount,0);
 			break;
@@ -74,23 +75,30 @@ public class ClientAccount {
 			System.out.println("0  : Show Money");
 			System.out.println("-1 : Quit ");
 			System.out.println("----------------------------------------");
-		        choix = Integer.parseInt(bufferRead.readLine());
+			System.out.print("your choice : ");
+			choix = Integer.parseInt(bufferRead.readLine());	
 			switch(choix){
 			case 1 :
-			    System.out.println("Veuillez saisir l'argent à ajouter:");
+				System.out.print("Veuillez saisir l'argent à ajouter: ");
 			    int money = Integer.parseInt(bufferRead.readLine());
 			    bankCustomer.depositAccount(idAccount,idAccount,bankCustomer.getId(),money);
 			    break;
 			case 2 :
-			    System.out.println("Veuillez saisir l'argent à enlever:");
-			     money = Integer.parseInt(bufferRead.readLine());
+			    System.out.print("Veuillez saisir l'argent à enlever: ");
+			    money = Integer.parseInt(bufferRead.readLine());
 			     bankCustomer.withDrawAccount(idAccount,money);
 			    break;
 			case 0 :
 			    System.out.println("Money: "+String.valueOf(bankCustomer.getMoney(idAccount)));
 			    break;
 			case 3 :
-			    System.out.println("Not yet implemented");
+			    System.out.print("Insert the id of the account of destination: ");
+			    int idAccountB = Integer.parseInt(bufferRead.readLine());
+			    System.out.print("Insert the id of the bank of destination: ");
+			    int idBankB = Integer.parseInt(bufferRead.readLine());
+			    System.out.print("Insert the money that you want to send: ");
+			    money = Integer.parseInt(bufferRead.readLine());
+			    bankCustomer.depositAccount(idAccount,idAccountB,idBankB,money);
 			    break;
 			case 4 : 
 				System.out.println("The id of your bank is : "+bankCustomer.getId());

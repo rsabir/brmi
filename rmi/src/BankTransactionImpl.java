@@ -11,6 +11,7 @@ class BankTransactionImpl extends BankTransactionPOA{
     }
 
     public boolean askConfirm (int idAccountA, int idAccountB, int idBankA, int money){
+    	bank.depositAccount(idAccountB, idAccountB, bank.getId(), money);
 	return true;
     }
 

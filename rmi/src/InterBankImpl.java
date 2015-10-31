@@ -11,6 +11,7 @@ class InterBankImpl extends InterbankPOA {
 
 	public InterBankImpl(ORB orb) {
 		historyList = new ArrayList<History>();
+		this.orb = orb;
 		bankList = new ArrayList<ArrayList<Object>>();
 	}
 
@@ -35,7 +36,7 @@ class InterBankImpl extends InterbankPOA {
 		// else {
 		// return (BankCustomer)instanceBankProxy(idBankB);
 		// }
-		if (bankList.get(idBankB).get(1)==null){
+		if (bankList.get(idBankB).size()<2){
 			initiateBankTransaction(idBankB);
 		}
 		return ((BankTransaction)bankList.get(idBankB).get(1)).askConfirm(idAccountA, idAccountB, idBankA, money);
@@ -45,10 +46,12 @@ class InterBankImpl extends InterbankPOA {
 		ArrayList<Object> tmp = new ArrayList<Object>();
 		tmp.add(0,portBank);
 		bankList.add(id,tmp);
+		bankList.get(id);
 	}
 	
 	private void initiateBankTransaction(int index){
 		ArrayList<Object> bankTransaction = bankList.get(index);
+		System.out.println(bankTransaction.get(0));
 		org.omg.CORBA.Object obj = orb.string_to_object("corbaname::localhost:"+bankTransaction.get(0)+"#BankTransaction");
 		App.BankTransaction banktransaction = BankTransactionHelper.narrow( obj );
 		bankTransaction.add(1,banktransaction);
