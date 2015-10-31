@@ -9,11 +9,14 @@ class Bank {
 	private static Interbank interBank;
 
 	Bank(ORB orb, Interbank interbank,int port) {
-		this.bankCustomer = new BankCustomerImpl(orb, this);
-		this.bankTransaction = new BankTransactionImpl(orb, this);
 		if (interbank != null) {
 			id = interbank.getNewId();
+			this.bankCustomer = new BankCustomerImpl(orb, this);
+			this.bankTransaction = new BankTransactionImpl(orb, this);
 			interbank.addNewBank(port,id);
+		}else{
+			System.out.println("Problem while trying to connect to interbank");
+			System.exit(-1);
 		}
 		this.interBank = interbank;
 		this.port = port;
