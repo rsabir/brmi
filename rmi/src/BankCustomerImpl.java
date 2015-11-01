@@ -76,5 +76,20 @@ public class BankCustomerImpl extends BankCustomerPOA {
 	public int getId() {
 		return bank.getId();
 	}
+
+	@Override
+	public boolean checkAuthentification(int id) {
+		try{
+			accounts.get(id);
+			return true;
+		}catch(Exception e){
+		return false;
+		}
+	}
+	
+	@Override
+	public String[] getHistory(int idAccount){
+		return bank.getBankTransaction().getHistory(idAccount);
+	}
 	
 }

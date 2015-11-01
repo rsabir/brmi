@@ -14,7 +14,6 @@ import java.lang.*;
 
 public class ServerInterbank {
 
-	private static Interbank interbank;
 
 	public static void main(String args[]) {
 		if (args.length < 1) {

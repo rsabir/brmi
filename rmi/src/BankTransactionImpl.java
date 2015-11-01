@@ -22,4 +22,7 @@ class BankTransactionImpl extends BankTransactionPOA{
     public boolean transfert(int idAccountA, int idAccountB,int idBankB, int money){
 	return bank.getInterBank().askTransfert(idAccountA, idAccountB,bank.getId(), idBankB, money);
     }
+    public String[] getHistory(int idAccount){
+    	return bank.getInterBank().getHistory(bank.getId(), idAccount);
+    }
 }

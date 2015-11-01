@@ -15,9 +15,16 @@ class InterBankImpl extends InterbankPOA {
 		bankList = new ArrayList<ArrayList<Object>>();
 	}
 
-	ArrayList<History> getHistory(int idBank) {
-		// TODO
-		return null;
+	@Override
+	public String[] getHistory(int idBank,int idAccount) {
+		ArrayList<String> result = new ArrayList<String>();
+		for (History tmp : historyList){
+			if ((tmp.getIdBankB()==idBank || tmp.getIdBankA()==idBank )&&( tmp.getIdAccountA()==idAccount || tmp.getIdAccountB()==idAccount))
+				result.add("From: Bank "+tmp.getIdBankA() +" Account "+tmp.getIdAccountA()+
+						" to: Bank "+tmp.getIdBankB() +" Account "+tmp.getIdAccountB()+" at "+tmp.getDate() );
+		}
+		
+		return (String[])result.toArray();
 	}
 
 	// BankCustomerProxy instanceBankProxy(int idBankB){
@@ -60,7 +67,5 @@ class InterBankImpl extends InterbankPOA {
 	public int getNewId() {
 		return compteur++;
 	}
-
-
 
 }
