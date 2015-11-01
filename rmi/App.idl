@@ -1,5 +1,7 @@
 module App{
 
+  typedef sequence<string> arrayString;
+	
   interface BankTransaction {
     boolean askConfirm(in long idAccountA, in long idAccountB,in long idBankA,in long money);
     long getId();
@@ -12,11 +14,14 @@ module App{
     void withDrawAccount(in long idAccountA, in long money);
     long getMoney(in long idAccountA);
     long getId();
+    boolean checkAuthentification(in long id);
+    arrayString getHistory(in long idAccount);
   };
   
   interface Interbank {
     boolean  askTransfert(in long idAccountA, in long idAccountB,in long idBankA,in long idBankB,in long money);
     long getNewId();
     void addNewBank(in long port,in long id);
+    arrayString getHistory(in long idBank, in long idAccount);
   };
 };
